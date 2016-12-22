@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.topza.stresscare.activity.LauncherActivity"
+    android:orientation="vertical"
+    android:id="@+id/linearId">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:layout_gravity="center"
+        android:src="@drawable/logo_stresscare"
+        android:layout_width="240dp"
+        android:layout_height="240dp" />
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="StressCase"
+        android:textColor="#ed6f85"
+        android:textSize="48sp"/>
+
+    <TextView
+        android:layout_marginTop="48dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mood... in your palm"
+        android:textSize="18dp"
+        android:textColor="@android:color/black"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"/>
+
+    <LinearLayout
+        android:layout_marginBottom="36dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:src="@drawable/tni_mini"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ies"/>
+
+    </LinearLayout>
+
+</LinearLayout>

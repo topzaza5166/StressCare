@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80ffffff">
+
+    <RelativeLayout
+        android:background="@drawable/green_shadow"
+        android:layout_width="270dp"
+        android:layout_height="480dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout">
+
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/smile_white"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HAPPY"
+                android:textColor="@android:color/white"
+                android:textSize="36sp"/>
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:src="@drawable/threeface"/>
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:src="@drawable/threecolorbar"/>
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line1"/>
+
+            <ImageView
+                android:id="@+id/x_close_button"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/x2"
+                android:clickable="true"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

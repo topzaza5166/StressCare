@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.SeekBar;
 
 import java.util.ArrayList;
@@ -20,23 +21,19 @@ public class CustomSeekBar extends SeekBar{
 
     public CustomSeekBar(Context context) {
         super(context);
-        initInstances();
     }
 
     public CustomSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initInstances();
     }
 
     public CustomSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initInstances();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public CustomSeekBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initInstances();
     }
 
     public void initData(ArrayList<ProgressItem> progressItemsList) {
@@ -59,8 +56,7 @@ public class CustomSeekBar extends SeekBar{
             for (int i = 0; i < mProgressItemsList.size(); i++) {
                 ProgressItem progressItem = mProgressItemsList.get(i);
                 Paint progressPaint = new Paint();
-                progressPaint.setColor(getResources().getColor(
-                        progressItem.color));
+                progressPaint.setColor(progressItem.color);
 
                 progressItemWidth = (int) (progressItem.progressItemPercentage
                         * progressBarWidth / 100);
@@ -82,8 +78,8 @@ public class CustomSeekBar extends SeekBar{
         }
     }
 
-    private void initInstances() {
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return false;
     }
-
 }

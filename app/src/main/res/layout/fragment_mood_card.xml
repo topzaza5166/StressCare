@@ -41,11 +41,17 @@
                 android:layout_height="40dp"
                 android:src="@drawable/threeface"/>
 
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="110dp"
-                android:layout_height="40dp"
-                android:src="@drawable/threecolorbar"/>
+            <com.example.topza.stresscare.view.seekbar.CustomSeekBar
+                android:id="@+id/seekBar0"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_margin="10dp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@android:color/transparent"
+                android:thumb="@drawable/seek_thumb_white"
+                android:thumbOffset="8dp"
+                />
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/graphView"

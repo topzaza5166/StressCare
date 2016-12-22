@@ -3,6 +3,7 @@ package com.example.topza.stresscare.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,15 @@ import android.widget.ImageView;
 
 import com.example.topza.stresscare.R;
 import com.example.topza.stresscare.event.CloseButtonClick;
+import com.example.topza.stresscare.view.seekbar.CustomSeekBar;
+import com.example.topza.stresscare.view.seekbar.ProgressItem;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 
 
 /**
@@ -24,6 +29,15 @@ public class MoodCardFragment extends Fragment {
 
     private ImageView xClose;
     private GraphView graphView;
+    private CustomSeekBar seekbar;
+    private ArrayList<ProgressItem> progressItemList;
+    private ProgressItem mProgressItem;
+
+    private float totalSpan = 300;
+    private float redSpan = 100;
+    private float greenSpan = 100;
+    private float yellowSpan = 100;
+
 
     public MoodCardFragment() {
         super();
@@ -68,6 +82,31 @@ public class MoodCardFragment extends Fragment {
         graphView.getGridLabelRenderer().setHorizontalLabelsColor(Color.WHITE);
         graphView.getGridLabelRenderer().setVerticalLabelsColor(Color.WHITE);
         graphView.getGridLabelRenderer().setGridColor(Color.WHITE);
+
+        seekbar = ((CustomSeekBar) rootView.findViewById(R.id.seekBar0));
+        initDataToSeekbar();
+    }
+
+    private void initDataToSeekbar() {
+        progressItemList = new ArrayList<ProgressItem>();
+
+        mProgressItem = new ProgressItem();
+        mProgressItem.progressItemPercentage = ((greenSpan / totalSpan) * 100);
+        mProgressItem.color = Color.GREEN;
+        progressItemList.add(mProgressItem);
+
+        mProgressItem = new ProgressItem();
+        mProgressItem.progressItemPercentage = (yellowSpan / totalSpan) * 100;
+        mProgressItem.color = Color.YELLOW;
+        progressItemList.add(mProgressItem);
+
+        mProgressItem = new ProgressItem();
+        mProgressItem.progressItemPercentage = (redSpan / totalSpan) * 100;
+        mProgressItem.color = Color.RED;
+        progressItemList.add(mProgressItem);
+
+        seekbar.initData(progressItemList);
+        seekbar.invalidate();
     }
 
     @Override

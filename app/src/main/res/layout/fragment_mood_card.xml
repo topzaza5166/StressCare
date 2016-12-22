@@ -2,15 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80ffffff">
+    android:background="#80ffffff"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="80dp" >
+
+
+    </FrameLayout>
 
     <RelativeLayout
-        android:background="@drawable/green_shadow"
-        android:layout_width="270dp"
-        android:layout_height="480dp"
+
+        android:layout_width="280dp"
+        android:layout_height="490dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/relativeLayout">
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="270dp"
+            android:layout_height="480dp"
+            android:background="@drawable/green_shadow"
+            />
 
         <LinearLayout
             android:layout_centerHorizontal="true"
@@ -59,16 +76,17 @@
                 android:layout_height="100dp"
                 />
 
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:id="@+id/x_close_button"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/x3"
-                android:clickable="true"/>
-
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/x_close_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/x"
+            android:clickable="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true" />
+
     </RelativeLayout>
 
 </RelativeLayout>

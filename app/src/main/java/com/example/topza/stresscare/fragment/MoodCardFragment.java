@@ -1,5 +1,6 @@
 package com.example.topza.stresscare.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.topza.stresscare.R;
+import com.example.topza.stresscare.event.CloseButtonClick;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -15,11 +22,8 @@ import com.example.topza.stresscare.R;
  */
 public class MoodCardFragment extends Fragment {
 
-    public interface OnClickButton{
-        void MoodCloseButton();
-    }
-
     private ImageView xClose;
+    private GraphView graphView;
 
     public MoodCardFragment() {
         super();
@@ -46,10 +50,24 @@ public class MoodCardFragment extends Fragment {
         xClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OnClickButton activity = (OnClickButton) getActivity();
-                activity.MoodCloseButton();
+                EventBus.getDefault().post(new CloseButtonClick());
             }
         });
+
+        graphView = (GraphView) rootView.findViewById(R.id.graphView);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        series.setColor(Color.WHITE);
+        graphView.addSeries(series);
+        graphView.getViewport().setScrollable(true);
+        graphView.getGridLabelRenderer().setHorizontalLabelsColor(Color.WHITE);
+        graphView.getGridLabelRenderer().setVerticalLabelsColor(Color.WHITE);
+        graphView.getGridLabelRenderer().setGridColor(Color.WHITE);
     }
 
     @Override

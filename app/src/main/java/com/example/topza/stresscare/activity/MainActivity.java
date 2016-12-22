@@ -1,20 +1,21 @@
 package com.example.topza.stresscare.activity;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.topza.stresscare.R;
+import com.example.topza.stresscare.event.CloseButtonClick;
+import com.example.topza.stresscare.event.ViewCardSelect;
 import com.example.topza.stresscare.fragment.BpmCardFragment;
 import com.example.topza.stresscare.fragment.MainFragment;
 import com.example.topza.stresscare.fragment.MoodCardFragment;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.OnclickButtonView,
-        BpmCardFragment.OnClickButton,
-        MoodCardFragment.OnClickButton {
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
@@ -32,6 +33,18 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Oncl
         initInstances();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
     private void initInstances() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,40 +52,40 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Oncl
         getSupportActionBar().setTitle("");
     }
 
-
-    @Override
-    public void OnClinkMoodView() {
-        if (getSupportFragmentManager().findFragmentById(R.id.contentContainer) instanceof MainFragment) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, MoodCardFragment.newInstance())
-                    .addToBackStack(null)
-                    .commit();
+    @Subscribe
+    public void OpenViewCard(ViewCardSelect viewCard) {
+        switch (viewCard.card) {
+            case ViewCardSelect.MoodCard:
+                if (getSupportFragmentManager()
+                        .findFragmentById(R.id.contentContainer) instanceof MainFragment) {
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.contentContainer, MoodCardFragment.newInstance())
+                            .addToBackStack(null)
+                            .commit();
+                }
+                break;
+            case ViewCardSelect.BpmCard:
+                if (getSupportFragmentManager()
+                        .findFragmentById(R.id.contentContainer) instanceof MainFragment) {
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.contentContainer, BpmCardFragment.newInstance())
+                            .addToBackStack(null)
+                            .commit();
+                }
+                break;
+            default:
+                break;
         }
     }
 
-    @Override
-    public void OnClickBpmView() {
-        if (getSupportFragmentManager().findFragmentById(R.id.contentContainer) instanceof MainFragment) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, BpmCardFragment.newInstance())
-                    .addToBackStack(null)
-                    .commit();
+    @Subscribe
+    public void CloseViewCard(CloseButtonClick closeButtonClick) {
+        if (closeButtonClick.isClick) {
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.contentContainer);
+            if (!(fragment instanceof MainFragment)) {
+                getSupportFragmentManager().popBackStack();
+            }
         }
     }
 
-    @Override
-    public void BpmCloseButton() {
-        if (getSupportFragmentManager()
-                .findFragmentById(R.id.contentContainer) instanceof BpmCardFragment) {
-            getSupportFragmentManager().popBackStack();
-        }
-    }
-
-    @Override
-    public void MoodCloseButton() {
-        if (getSupportFragmentManager()
-                .findFragmentById(R.id.contentContainer) instanceof MoodCardFragment) {
-            getSupportFragmentManager().popBackStack();
-        }
-    }
 }

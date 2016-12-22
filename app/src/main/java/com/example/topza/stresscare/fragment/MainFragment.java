@@ -8,17 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.topza.stresscare.R;
+import com.example.topza.stresscare.event.ViewCardSelect;
 import com.example.topza.stresscare.view.ButtonView;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by nuuneoi on 11/16/2014.
  */
 public class MainFragment extends Fragment {
-
-    public interface OnclickButtonView{
-        void OnClinkMoodView();
-        void OnClickBpmView();
-    }
 
     private ButtonView moodView;
     private ButtonView bpmView;
@@ -48,8 +46,7 @@ public class MainFragment extends Fragment {
         moodView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OnclickButtonView fragment = (OnclickButtonView) getActivity();
-                fragment.OnClinkMoodView();
+                EventBus.getDefault().post(new ViewCardSelect(ViewCardSelect.MoodCard));
             }
         });
 
@@ -57,8 +54,7 @@ public class MainFragment extends Fragment {
         bpmView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OnclickButtonView fragment = (OnclickButtonView) getActivity();
-                fragment.OnClickBpmView();
+                EventBus.getDefault().post(new ViewCardSelect(ViewCardSelect.BpmCard));
             }
         });
     }

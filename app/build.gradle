@@ -25,4 +25,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile project(':TheCheeseLibrary')
     compile project(path: ':TheCheeseLibrary')
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.jjoe64:graphview:4.2.1'
 }
